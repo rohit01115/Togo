@@ -7,20 +7,28 @@
 
 <style>
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Background */
+
 body{
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
     url("images/pexels-ifreestock-572487.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Login box */
+/* Login Box */
 
 .qw{
     width: 400px;
-    height: 300px;
+    height: 320px;
     background-color: white;
     border-radius: 20px;
     margin: 200px auto;
@@ -29,51 +37,93 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 40px;
+    padding-top: 30px;
     transition: box-shadow 0.1s;
 }
 
 .hed{
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     color: #0b979e;
 }
 
 /* Form */
 
 form{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 70%;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    width:70%;
+}
+
+/* Floating Input Container */
+
+.input-box{
+    position:relative;
+    width:100%;
 }
 
 /* Input */
 
-.in{
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 14px;
+.input-box input{
+    width:100%;
+    padding:12px;
+    border:2px solid #ccc;
+    border-radius:8px;
+    outline:none;
+    background:transparent;
+    font-size:14px;
+    transition:0.3s;
 }
 
-.in:focus{
-    border-color: #12a5b0;
+/* Label */
+
+.input-box label{
+    position:absolute;
+    left:12px;
+    top:12px;
+    color:#888;
+    pointer-events:none;
+    transition:0.3s;
+    background:white;
+    padding:0 4px;
+}
+
+/* Floating Animation */
+
+.input-box input:focus + label,
+.input-box input:valid + label{
+    top:-8px;
+    font-size:12px;
+    color:#0b979e;
+}
+
+.input-box input:focus{
+    border-color:#0b979e;
 }
 
 /* Button */
 
 .ty{
-    background-color: #0b979e;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
+    background-color:#0b979e;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 .ty:hover{
-    background-color: #18c0cf;
+    background-color:#18c0cf;
+}
+
+/* Signup Link */
+
+.link{
+    text-align:center;
+    margin-top:5px;
+    color:#0b979e;
+    text-decoration:none;
+    font-size:14px;
 }
 
 </style>
@@ -87,13 +137,19 @@ form{
 
 <form onsubmit="login(event)">
 
-<input id="username" class="in" type="text" placeholder="Username" required>
+<div class="input-box">
+<input id="username" type="text" required>
+<label>Username</label>
+</div>
 
-<input id="password" class="in" type="password" placeholder="Password" required>
+<div class="input-box">
+<input id="password" type="password" required>
+<label>Password</label>
+</div>
 
 <button class="ty" type="submit">Login</button>
 
-<a href="signup.html" style="text-align:center; margin-top:10px; color:#0b979e; text-decoration:none;">
+<a href="signup.html" class="link">
 Don't have an account? Sign up
 </a>
 
@@ -109,14 +165,16 @@ function login(event) {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    if (username === 'admin' && password === 'password') {
+    if (username === 'A' && password === 'A') {
         alert('Login successful!');
         window.location.href = 'PG.html';
     } 
     else {
-        alert('Invalid username or password. Please try again.');
+        alert('Invalid username or password');
     }
 }
+
+/* Moving Shadow Animation */
 
 const qw = document.getElementById("qw");
 
