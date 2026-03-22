@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{
-            background-image: url(images/pexels-ifreestock-572487.jpg);
-            background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
 
-        }
-        .qw{
+<style>
+
+body{
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("images/pexels-ifreestock-572487.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Login box */
+
+.qw{
     width: 400px;
     height: 300px;
     background-color: white;
@@ -21,15 +27,18 @@
     box-shadow: inset 0 0 20px #0b979e;
 
     display: flex;
-    flex-direction: column;   /* stack items */
-    align-items: center;      /* center horizontally */
+    flex-direction: column;
+    align-items: center;
     padding-top: 40px;
+    transition: box-shadow 0.1s;
 }
 
 .hed{
     margin-bottom: 30px;
     color: #0b979e;
 }
+
+/* Form */
 
 form{
     display: flex;
@@ -38,16 +47,21 @@ form{
     width: 70%;
 }
 
+/* Input */
+
 .in{
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ccc;
     outline: none;
+    font-size: 14px;
 }
 
 .in:focus{
-    border-color: #0b979e;
+    border-color: #12a5b0;
 }
+
+/* Button */
 
 .ty{
     background-color: #0b979e;
@@ -59,20 +73,63 @@ form{
 }
 
 .ty:hover{
-    background-color: #097b80;
+    background-color: #18c0cf;
 }
-    </style>
-</head>
-<body>
-    <h1></h1>
-   <div class="qw">
-    <h2 class="hed">Login</h2>
 
-    <form onsubmit="login()">
-        <input id="username" class="in" type="text" placeholder="Username" required>
-        <input id="password" class="in" type="password" placeholder="Password" required>
-        <button class="ty" type="submit">Login</button>
-    </form>
+</style>
+</head>
+
+<body>
+
+<div class="qw" id="qw">
+
+<h2 class="hed">Login</h2>
+
+<form onsubmit="login(event)">
+
+<input id="username" class="in" type="text" placeholder="Username" required>
+
+<input id="password" class="in" type="password" placeholder="Password" required>
+
+<button class="ty" type="submit">Login</button>
+
+<a href="signup.html" style="text-align:center; margin-top:10px; color:#0b979e; text-decoration:none;">
+Don't have an account? Sign up
+</a>
+
+</form>
+
 </div>
+
+<script>
+
+function login(event) {
+    event.preventDefault(); 
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username === 'admin' && password === 'password') {
+        alert('Login successful!');
+        window.location.href = 'PG.html';
+    } 
+    else {
+        alert('Invalid username or password. Please try again.');
+    }
+}
+
+const qw = document.getElementById("qw");
+
+document.addEventListener("mousemove", (e) => {
+
+    const x = (window.innerWidth / 2 - e.clientX) / 20;
+    const y = (window.innerHeight / 2 - e.clientY) / 20;
+
+    qw.style.boxShadow = `${x}px ${y}px 20px rgba(0,0,0,0.6)`;
+
+});
+
+</script>
+
 </body>
 </html>
